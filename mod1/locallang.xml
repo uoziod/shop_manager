@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for module &quot;user_txshopmanagerM1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="title">Shop Manager</label>
+			<label index="act.apply">Apply changes</label>
+			<label index="act.edit">Edit</label>
+			<label index="act.add">Add</label>
+			<label index="act.add_new_record">Add new record</label>
+			<label index="sys.list_empty">List is empty</label>
+			<label index="function1">Online Shop Structure</label>
+			<label index="function1.items">Goods</label>
+			<label index="function1.filter">Show only items of</label>
+			<label index="function1.filter.unset">Filter is unset</label>
+			<label index="function1.categories">Categories</label>
+			<label index="function2">Order Management</label>
+			<label index="function2.status">Status</label>
+			<label index="function2.status.1">Order submitted by user</label>
+			<label index="function2.status.2">Order is received and accepted by store</label>
+			<label index="function2.status.10">Shop is awaiting goods from third-party</label>
+			<label index="function2.status.11">Shop is awaiting customer payment</label>
+			<label index="function2.status.12">Shop is awaiting material from customer</label>
+			<label index="function2.status.13">Order has been payed</label>
+			<label index="function2.status.20">Goods shipped to customer</label>
+			<label index="function2.status.21">Gift certificates shipped to customer</label>
+			<label index="function2.status.30">Other message from store</label>
+			<label index="function2.status.50">Customer request for cancelling</label>
+			<label index="function2.status.51">Message from customer to shop</label>
+			<label index="function2.status.60">Send gift certificate message to receiver</label>
+			<label index="function2.status.100">Order shipped and closed</label>
+			<label index="function2.status.101">Order closed</label>
+			<label index="function2.status.200">Order cancelled</label>
+			<label index="function2.jumpTo">Jump to order</label>
+			<label index="function2.jumpToText">Jump to order #</label>
+			<label index="function2.jump">Jump</label>
+			<label index="function2.orderItems">Ordered items</label>
+			<label index="function2.detailed">Details of order #</label>
+			<label index="function2.created">Created</label>
+			<label index="function2.updated">Updated</label>
+			<label index="function2.customer">Customer</label>
+			<label index="function2.address">Address</label>
+			<label index="function2.city">City</label>
+			<label index="function2.country">Country</label>
+			<label index="function2.phone">Phone</label>
+			<label index="function2.email">E-mail</label>
+			<label index="function2.sum">Total price</label>
+			<label index="function2.ip">Customer IP</label>
+			<label index="function2.zip">ZIP Code</label>
+			<label index="change">Change</label>
+			<label index="comment">Comment</label>
+		</languageKey>
+		<languageKey index="ru" type="array">
+			<label index="title">Менеджер магазина</label>
+			<label index="act.apply">Применить изменения</label>
+			<label index="act.edit">Редактировать</label>
+			<label index="act.add">Добавить</label>
+			<label index="act.add_new_record">Добавить новую запись</label>
+			<label index="sys.list_empty">Список пуст</label>
+			<label index="function1">Управление структурой магазина</label>
+			<label index="function1.items">Товары</label>
+			<label index="function1.filter">Отображать только единицы категории</label>
+			<label index="function1.filter.unset">Фильтр не задан</label>
+			<label index="function1.categories">Категории</label>
+			<label index="function2">Текущие заказы</label>
+			<label index="function2.status">Статус</label>
+			<label index="function2.status.1">Заказ подтверждён покупателем</label>
+			<label index="function2.status.2">Магазин принял заказ</label>
+			<label index="function2.status.10">Магазин комплектует заказ</label>
+			<label index="function2.status.11">Магазин ожидает оплаты</label>
+			<label index="function2.status.12">Магазин ожидает данные от покупателя</label>
+			<label index="function2.status.13">Заказ оплачен</label>
+			<label index="function2.status.20">Заказ отправлен покупателю</label>
+			<label index="function2.status.21">Подарочный сертификат отправлен покупателю</label>
+			<label index="function2.status.30">Сообщение покупателю от магазина</label>
+			<label index="function2.status.50">Запрос на отмену заказа</label>
+			<label index="function2.status.51">Сообщение магазину от покупателя</label>
+			<label index="function2.status.60">Отправить подарочный сертификат получателю</label>
+			<label index="function2.status.100">Заказ отправлен и закрыт</label>
+			<label index="function2.status.101">Заказ закрыт</label>
+			<label index="function2.status.200">Заказ отменён</label>
+			<label index="function2.jumpTo">Быстрый переход к заказу</label>
+			<label index="function2.jumpToText">Быстрый переход к заказу №</label>
+			<label index="function2.jump">Перейти</label>
+			<label index="function2.orderItems">Заказанные товары</label>
+			<label index="function2.detailed">Детали заказа №</label>
+			<label index="function2.created">Время создания</label>
+			<label index="function2.updated">Время последнего обновления</label>
+			<label index="function2.customer">Заказчик</label>
+			<label index="function2.address">Адрес</label>
+			<label index="function2.city">Город</label>
+			<label index="function2.country">Страна</label>
+			<label index="function2.phone">Телефон</label>
+			<label index="function2.email">E-mail</label>
+			<label index="function2.sum">Сумма заказа</label>
+			<label index="function2.ip">IP заказчика</label>
+			<label index="function2.zip">Индекс</label>
+			<label index="change">Изменить</label>
+			<label index="comment">Комментарий</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,26 @@
+  # cat=basic/enable; type=integer; label=tt_products PIDstoreRoot: Page ID where items are saved
+PIDstoreRoot = 
+  # cat=basic/enable; type=integer; label=tt_products PIDcategories: Page ID where categories are saved
+PIDcategories = 
+  # cat=basic/enable; type=integer; label=tt_products PID for sys_products_orders records: Page ID where sys_products_orders tables data saving
+sys_products_orders = 
+  # cat=basic/enable; type=boolean; label=Swap module functions: If checked "Categories and Articles" and "Order tracking" functions will be rearranged
+swapFunctions = 0
+  # cat=basic/enable; type=integer; label=Limit "Order tracking" items count
+limitItems = 10
+  # cat=basic/enable; type=string; label=Comma separated order statuses to be excluded: Modify this value to remove order statuses (from sys_products_orders table) to hide in module
+excludeStatuses = 10,11,12,13,21,60
+  # cat=basic/enable; type=string; label=tt_products Template File: If you have custom template for tt_products enter path to it. For example: "uploads/tf/tt_products.tmpl"
+ttproductsTemplate = EXT:tt_products/template/example_template_bill_de.tmpl
+  # cat=basic/enable; type=integer; label=tt_products "PIDtracking" constant value: Enter Page ID with "tt_products" plugin with code "tracking"
+PIDtracking = 
+  # cat=basic/enable; type=string; label=tt_products "domain" constant value: Domain of the shop
+domain = nodomain.entered.yet
+  # cat=basic/enable; type=string; label=tt_products "orderEmail_fromName" constant value: Enter title of "From:" value for e-mail notifications
+orderEmail_fromName = My TYPO3 Shop
+  # cat=basic/enable; type=string; label=tt_products "orderEmail_from" constant value: Enter reply e-mail value for e-mail notifications
+orderEmail_from = my@typo3-shop.com
+  # cat=basic/enable; type=boolean; label=Icons instead image previews in Goods tab
+iconsInsteadImages = 0
+  # cat=basic/enable; type=integer; label=Image previews width
+imagesWidth = 50

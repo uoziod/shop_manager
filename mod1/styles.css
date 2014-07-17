@@ -1,0 +1,116 @@
+.clearer {
+	clear: both;
+}
+
+TABLE.typo3-usersettings {
+	margin: 10px 0 0 0;
+	padding-bottom: 0;
+	width: 100%;
+}
+
+TABLE.typo3-usersettings TD {
+	line-height: 100%;
+	padding: 4px 0 4px 8px;
+}
+
+TABLE.typo3-usersettings TR.highlight {
+	background: #ffffdf;
+}
+
+TABLE.typo3-usersettings TD.td-textLine {
+	padding: 6px 0;
+}
+
+TABLE.typo3-usersettings TD.td-icons {
+	text-align: right;
+	white-space: nowrap;
+	width: 10px;
+}
+
+TABLE.typo3-usersettings TD.td-image {
+	width: 50px;
+	padding: 4px 8px;
+}
+
+TABLE.typo3-usersettings TD.td-image .hiddenImage {
+	display: none;
+	position: absolute;
+	z-index: 10000;
+	background: #ffffdf;
+	padding: 0 3px 3px 3px;
+}
+
+TABLE.typo3-usersettings TD.td-image.showImage .t3-icon {
+	display: none;
+}
+
+TABLE.typo3-usersettings TD.td-image.showImage .hiddenImage {
+	display: block;
+}
+
+TABLE.typo3-usersettings TD.td-10p {
+	width: 10%;
+}
+
+TABLE.typo3-usersettings TD.td-20p {
+	width: 20%;
+}
+
+.td-icons IMG {
+	vertical-align: middle;
+}
+
+.td-edge,
+TABLE.typo3-usersettings TD.td-edge {
+	padding-right: 8px;
+}
+
+.tr-even {
+	background: #E9E9E9;
+}
+
+.c-tablayer {
+	padding-bottom: 8px;
+}
+
+.tab-content {
+	margin: 10px 0 0 0;
+	padding: 0 8px;
+}
+
+.pare IMG {
+	vertical-align: middle;
+}
+
+#tx_shopmanager_f2_id1 table.typo3-usersettings td.td-label,
+#tx_shopmanager_f2_id1 .td-price {
+	width: 10%;
+	white-space: nowrap;
+}
+
+#tx_shopmanager_f2_id1 table.typo3-usersettings td.td-label {
+	text-align: center;
+}
+
+#tx_shopmanager_f2_id1 .td-price {
+	text-align: right;
+}
+
+.typo3-usersettings TR.active {
+	background: #a00;
+	color: #fff;
+}
+
+.tx_shopmanager_spaced_block {
+	float: left;
+	margin-left: 5px;
+}
+
+#tx_shopmanager_f2_status {
+	display: none;
+}
+
+.verticalCenter TH,
+.verticalCenter TD {
+	vertical-align: middle;
+}
