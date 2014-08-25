@@ -24,3 +24,5 @@ orderEmail_from = my@typo3-shop.com
 iconsInsteadImages = 0
   # cat=basic/enable; type=integer; label=Image previews width
 imagesWidth = 50
+  # cat=basic/enable; type=boolean; label=Disable "Fixed position"
+disableFixedPosition = 0

@@ -202,7 +202,9 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 
 			// JavaScript and Stylesheets
 		$this->doc->JScode = '<link rel="stylesheet" type="text/css" href="' . $BACK_PATH . t3lib_extMgm::extRelPath('shop_manager') . 'mod1/styles.css" media="all">';
+		$this->doc->JScode .= '<script type="text/javascript">var extConf = ' . json_encode($this->getMergedConfig()) . '</script>';
 		$this->doc->JScode .= '<script type="text/javascript" src="' . $BACK_PATH . t3lib_extMgm::extRelPath('shop_manager') . 'mod1/jquery.js"></script>';
+		$this->doc->JScode .= '<script type="text/javascript" src="' . $BACK_PATH . t3lib_extMgm::extRelPath('shop_manager') . 'mod1/jquery.cookie.js"></script>';
 		$this->doc->JScode .= '<script type="text/javascript" src="' . $BACK_PATH . t3lib_extMgm::extRelPath('shop_manager') . 'mod1/header.js"></script>';
 		$this->doc->postCode = '<script type="text/javascript" src="' . $BACK_PATH . t3lib_extMgm::extRelPath('shop_manager') . 'mod1/footer.js"></script>';
 
@@ -291,6 +293,11 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 		$opt1 = t3lib_div::_POST('opt1');
 		$opt2 = t3lib_div::_POST('opt2');
 		$opt3 = t3lib_div::_POST('opt3');
+		$deleteItem = t3lib_div::_POST('deleteItem');
+
+		if (isset($deleteItem)) {
+			$TYPO3_DB->exec_UPDATEquery('tt_products', 'uid='.intval($deleteItem), array('deleted' => '1'));
+		}
 
 		if ($opt1 == 'statusChange') {
 
@@ -361,7 +368,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 				} else {
 					$layout['defRow']['1'] = $layout['defRowOdd']['1'] = $layout['defRowEven']['1'] = Array('<td class="td-textLine" style="width: 65%">', '</td>');
 					$layout['defRow']['2'] = $layout['defRowOdd']['2'] = $layout['defRowEven']['2'] = Array('<td class="td-textLine" style="width: 35%">', '</td>');
-					$layout['defRow']['3'] = $layout['defRowOdd']['3'] = $layout['defRowEven']['3'] = Array('<td class="td-icons td-edge">', '</td>');
+					$layout['defRow']['3'] = $layout['defRowOdd']['3'] = $layout['defRowEven']['3'] = Array('<td class="td-icons">', '</td>');
+					$layout['defRow']['4'] = $layout['defRowOdd']['4'] = $layout['defRowEven']['4'] = Array('<td class="td-icons td-edge">', '</td>');
 				}
 				$layout['defRow']['0'] = $layout['defRowOdd']['0'] = $layout['defRowEven']['0'] = Array('<td class="td-image">', '</td>');
 
@@ -380,12 +388,11 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					else
 						$table[$counter][0] = $this->pictureGenerator($row['image'], $extConf['imagesWidth'], 600);
 					$table[$counter][1] = $row['title'];
-					if ($itemsFilter > 0) {
-						$table[$counter][2] = '<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$row['uid'].']=edit',$GLOBALS['BACK_PATH'])).'">'.'<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/edit2.gif').' title="' . $LANG->getLL('act.edit') . '" border="0" alt="" /></a>';
-					} else {
+					if ($itemsFilter == 0) {
 						$table[$counter][2] = $categories[$row['category']];
-						$table[$counter][3] = '<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$row['uid'].']=edit',$GLOBALS['BACK_PATH'])).'">'.'<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/edit2.gif').' title="' . $LANG->getLL('act.edit') . '" border="0" alt="" /></a>';
 					}
+					$table[$counter][3] = '<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$row['uid'].']=edit',$GLOBALS['BACK_PATH'])).'">'.'<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/edit2.gif').' title="' . $LANG->getLL('act.edit') . '" border="0" alt="" /></a>';
+					$table[$counter][4] = '<a href="#" onclick="removeItem(\''.$LANG->getLL('act.delete.confirm').'\', '.$row['uid'].', \''.$row['title'].'\');">'.'<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/garbage.gif').' title="' . $LANG->getLL('act.delete') . '" border="0" alt="" /></a>';
 					$counter++;
 				}
 				$TYPO3_DB->sql_free_result($res);
@@ -453,6 +460,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					</div>';
 
 				$content .= '</td></tr></table>';
+
+				$content .= '<input type="hidden" name="deleteItem" id="deleteItem" value="0" />';
 
 			break;
 			case 2:
@@ -761,6 +770,9 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 
 		if ($value = $GLOBALS['BE_USER']->getTSConfigVal('mod.user_shopmanager.imagesWidth'))
 			$extConf['imagesWidth'] = $value;
+
+		if ($value = $GLOBALS['BE_USER']->getTSConfigVal('mod.user_shopmanager.disableFixedPosition'))
+			$extConf['disableFixedPosition'] = $value;
 
 		return $extConf;
 

@@ -9,6 +9,8 @@
 			<label index="title">Shop Manager</label>
 			<label index="act.apply">Apply changes</label>
 			<label index="act.edit">Edit</label>
+			<label index="act.delete">Delete</label>
+			<label index="act.delete.confirm">Are you sure to delete?</label>
 			<label index="act.add">Add</label>
 			<label index="act.add_new_record">Add new record</label>
 			<label index="sys.list_empty">List is empty</label>
@@ -57,6 +59,8 @@
 			<label index="title">Shop Manager</label>
 			<label index="act.apply">Änderungen speichern</label>
 			<label index="act.edit">bearbeiten</label>
+			<label index="act.delete">löschen</label>
+			<label index="act.delete.confirm">Sind Sie sicher, dass Sie löschen?</label>
 			<label index="act.add">hinzufügen</label>
 			<label index="act.add_new_record">Neuen Eintrag erstellen</label>
 			<label index="sys.list_empty">keine Einträge vorhanden</label>
@@ -105,6 +109,8 @@
 			<label index="title">Менеджер магазина</label>
 			<label index="act.apply">Применить изменения</label>
 			<label index="act.edit">Редактировать</label>
+			<label index="act.delete">Удалить</label>
+			<label index="act.delete.confirm">Вы уверены, что хотите удалить?</label>
 			<label index="act.add">Добавить</label>
 			<label index="act.add_new_record">Добавить новую запись</label>
 			<label index="sys.list_empty">Список пуст</label>
