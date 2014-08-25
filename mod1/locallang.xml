@@ -53,6 +53,54 @@
 			<label index="change">Change</label>
 			<label index="comment">Comment</label>
 		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="title">Shop Manager</label>
+			<label index="act.apply">Änderungen speichern</label>
+			<label index="act.edit">bearbeiten</label>
+			<label index="act.add">hinzufügen</label>
+			<label index="act.add_new_record">Neuen Eintrag erstellen</label>
+			<label index="sys.list_empty">keine Einträge vorhanden</label>
+			<label index="function1">Online Shop Struktur</label>
+			<label index="function1.items">Produkte</label>
+			<label index="function1.filter">Zeige nur Produkte der Kategorie</label>
+			<label index="function1.filter.unset">alle</label>
+			<label index="function1.categories">Kategorien</label>
+			<label index="function2">Bestellungen verwalten</label>
+			<label index="function2.status">Status</label>
+			<label index="function2.status.1">Bestellung eingegangen</label>
+			<label index="function2.status.2">Bestellung eingegangen und aktzeptiert</label>
+			<label index="function2.status.10">Shop wartet auf Lieferung Dritter</label>
+			<label index="function2.status.11">Shop wartet auf Zahlung des Kunden</label>
+			<label index="function2.status.12">Shop wartet auf TeileLieferung des Kunden</label>
+			<label index="function2.status.13">Bestellung ist bezahlt</label>
+			<label index="function2.status.20">Bestellung wurde versendet</label>
+			<label index="function2.status.21">Geschenkgutschein versandt an Kunde</label>
+			<label index="function2.status.30">Andere Nachricht des Shops</label>
+			<label index="function2.status.50">Kunde wünscht Stornierung</label>
+			<label index="function2.status.51">Nachricht des Kunden</label>
+			<label index="function2.status.60">Sende Geschenknachricht an Empfänger</label>
+			<label index="function2.status.100">Bestellung versandt und abgeschlossen</label>
+			<label index="function2.status.101">Bestellung abgeschlossen</label>
+			<label index="function2.status.200">Bestellung storniert</label>
+			<label index="function2.jumpTo">Zeige Bestellung</label>
+			<label index="function2.jumpToText">Zeige Bestellung Nr.</label>
+			<label index="function2.jump">Los</label>
+			<label index="function2.orderItems">bestellte Produkte</label>
+			<label index="function2.detailed">Details zur Bestellung Nr.</label>
+			<label index="function2.created">Erstellt</label>
+			<label index="function2.updated">geupdated</label>
+			<label index="function2.customer">Kunde</label>
+			<label index="function2.address">Adresse</label>
+			<label index="function2.city">Stadt</label>
+			<label index="function2.country">Land</label>
+			<label index="function2.phone">Telefon</label>
+			<label index="function2.email">E-Mail</label>
+			<label index="function2.sum">Summe</label>
+			<label index="function2.ip">IP Addresse d. Kunden</label>
+			<label index="function2.zip">PLZ</label>
+			<label index="change">Änderung</label>
+			<label index="comment">Komentar</label>
+		</languageKey>
 		<languageKey index="ru" type="array">
 			<label index="title">Менеджер магазина</label>
 			<label index="act.apply">Применить изменения</label>

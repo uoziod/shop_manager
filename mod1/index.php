@@ -276,9 +276,9 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 			'',
 			'title'
 		);
-		$res = $TYPO3_DB->sql(TYPO3_db, $query);
+		$res = $TYPO3_DB->sql_query($query);
 		$categories = Array();
-		while($row = mysql_fetch_assoc($res)) {
+		while($row = $TYPO3_DB->sql_fetch_assoc($res)) {
 			$categories[$row['uid']] = $row['title'];
 		}
 		$TYPO3_DB->sql_free_result($res);
@@ -301,8 +301,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 				'sys_products_orders',
 				'uid=' . $detailed
 			);
-			$res = $TYPO3_DB->sql(TYPO3_db, $query);
-			$row = mysql_fetch_assoc($res);
+			$res = $TYPO3_DB->sql_query($query);
+			$row = $TYPO3_DB->sql_fetch_assoc($res);
 			$TYPO3_DB->sql_free_result($res);
 
 			$template_full_path = t3lib_div::getFileAbsFileName($extConf['ttproductsTemplate']);
@@ -372,9 +372,9 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					'',
 					'category, title'
 				);
-				$res = $TYPO3_DB->sql(TYPO3_db, $query);
+				$res = $TYPO3_DB->sql_query($query);
 				$counter = 0;
-				while($row = mysql_fetch_assoc($res)) {
+				while($row = $TYPO3_DB->sql_fetch_assoc($res)) {
 					if ($extConf['iconsInsteadImages'])
 						$table[$counter][0] = '<div class="hiddenImage">' . $this->pictureGenerator($row['image'], $extConf['imagesWidth'], 600) . '</div><span class="t3-icon t3-icon-tcarecords t3-icon-tcarecords-tt_products t3-icon-tt_products-default">&nbsp;</span>';
 					else
@@ -427,13 +427,13 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					'',
 					'title'
 				);
-				$res = $TYPO3_DB->sql(TYPO3_db, $query);
+				$res = $TYPO3_DB->sql_query($query);
 				$counter = 0;
-				while($row = mysql_fetch_assoc($res)) {
+				while($row = $TYPO3_DB->sql_fetch_assoc($res)) {
 					$table[$counter][0] = $row['title'];
 					$table[$counter][1] = '<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products_cat]['.$row['uid'].']=edit',$GLOBALS['BACK_PATH'])).'">'.'<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/edit2.gif').' title="' . $LANG->getLL('act.edit') . '" border="0" alt="" /></a>';
 					$counter++;
-				}
+				};
 				$TYPO3_DB->sql_free_result($res);
 
 				$content .= $this->doc->getDynTabMenu(Array(
@@ -473,8 +473,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					'tstamp DESC',
 					$extConf['limitItems']
 				);
-				$res = $TYPO3_DB->sql(TYPO3_db, $query);
-				while($row = mysql_fetch_assoc($res)) {
+				$res = $TYPO3_DB->sql_query($query);
+				while($row = $TYPO3_DB->sql_fetch_assoc($res)) {
 					if ($row['status'] > 0) {
 						$list_orders[$row['status']][$row['uid']]['feusers_uid'] = $row['feusers_uid'];
 						$list_orders[$row['status']][$row['uid']]['name'] = $row['name'];
@@ -532,8 +532,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 						'sys_products_orders',
 						'uid=' . $detailed
 					);
-					$res = $TYPO3_DB->sql(TYPO3_db, $query);
-					$row = mysql_fetch_assoc($res);
+					$res = $TYPO3_DB->sql_query($query);
+					$row = $TYPO3_DB->sql_fetch_assoc($res);
 					$TYPO3_DB->sql_free_result($res);
 
 						// Order details
@@ -702,7 +702,7 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 			$size_h . 'm',
 			'',
 			'',
-			'',
+			array(),
 			1
 		);
 		$imageInfo[3] = '/' . str_replace(PATH_site, '', $imageInfo[3]);
