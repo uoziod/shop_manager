@@ -11,7 +11,7 @@ limitItems = 10
   # cat=basic/enable; type=string; label=Comma separated order statuses to be excluded: Modify this value to remove order statuses (from sys_products_orders table) to hide in module
 excludeStatuses = 10,11,12,13,21,60
   # cat=basic/enable; type=string; label=tt_products Template File: If you have custom template for tt_products enter path to it. For example: "uploads/tf/tt_products.tmpl"
-ttproductsTemplate = EXT:tt_products/template/example_template_bill_de.tmpl
+ttproductsTemplate = EXT:tt_products/template/products_template.tmpl
   # cat=basic/enable; type=integer; label=tt_products "PIDtracking" constant value: Enter Page ID with "tt_products" plugin with code "tracking"
 PIDtracking = 
   # cat=basic/enable; type=string; label=tt_products "domain" constant value: Domain of the shop
@@ -20,9 +20,9 @@ domain = nodomain.entered.yet
 orderEmail_fromName = My TYPO3 Shop
   # cat=basic/enable; type=string; label=tt_products "orderEmail_from" constant value: Enter reply e-mail value for e-mail notifications
 orderEmail_from = my@typo3-shop.com
-  # cat=basic/enable; type=boolean; label=Icons instead image previews in Goods tab
+  # cat=basic/enable; type=boolean; label=Icons instead image previews in Products tab
 iconsInsteadImages = 0
   # cat=basic/enable; type=integer; label=Image previews width
 imagesWidth = 50
-  # cat=basic/enable; type=boolean; label=Disable "Fixed position"
+  # cat=basic/enable; type=boolean; label=Disable "Fixed position": Disables default option of storing products page scrolling position
 disableFixedPosition = 0

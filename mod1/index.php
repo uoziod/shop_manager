@@ -28,9 +28,7 @@
  */
 
 $LANG->includeLLFile('EXT:shop_manager/mod1/locallang.xml');
-require_once(PATH_t3lib . 'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
-	// DEFAULT initialization of a module [END]
 
 /**
  * Module 'Shop Manager' for the 'shop_manager' extension.
@@ -94,8 +92,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 		 */
 
 		$orderData = unserialize($orderRow['orderData']);
-		$sendername = $extConf['orderEmail_fromName'];
-		$senderemail = $extConf['orderEmail_from'];
+		$senderName = $extConf['orderEmail_fromName'];
+		$senderEmail = $extConf['orderEmail_from'];
 		$recipients = $orderRow['email'];
 
 		$cObj = t3lib_div::makeInstance("tslib_cObj");
@@ -118,32 +116,12 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 		$subject = trim($parts[0]);
 		$plain_message = trim($parts[1]);
 
-		include_once (PATH_t3lib.'class.t3lib_htmlmail.php');
-
-		$cls = t3lib_div::makeInstanceClassName('t3lib_htmlmail');
-
-		if (class_exists($cls)) {
-			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
-			$Typo3_htmlmail->start();
-			$Typo3_htmlmail->mailer = 'TYPO3 HTMLMail';
-			$message = html_entity_decode($plain_message);
-			if ($Typo3_htmlmail->linebreak == chr(10))
-				$message = str_replace(chr(13).chr(10),$Typo3_htmlmail->linebreak,$plain_message);
-
-			$Typo3_htmlmail->subject = $subject;
-			$Typo3_htmlmail->from_email = $senderemail;
-			$Typo3_htmlmail->from_name = str_replace (',' , ' ', $sendername);
-			$Typo3_htmlmail->replyto_email = $Typo3_htmlmail->from_email;
-			$Typo3_htmlmail->replyto_name = $Typo3_htmlmail->from_name;
-			$Typo3_htmlmail->organisation = '';
-
-			$Typo3_htmlmail->addPlain($plain_message);
-
-			$Typo3_htmlmail->setHeaders();
-			$Typo3_htmlmail->setContent();
-			$Typo3_htmlmail->setRecipient(explode(',', $recipients));
-			$Typo3_htmlmail->sendTheMail();
-		}
+		$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_mail_Message');
+		$Typo3_htmlmail->setFrom = array($senderEmail => str_replace(',' , ' ', $senderName));
+		$Typo3_htmlmail->setTo = $recipients;
+		$Typo3_htmlmail->setSubject = $subject;
+		$Typo3_htmlmail->setBody($plain_message);
+		$Typo3_htmlmail->send();
 
 	}
 
@@ -219,8 +197,8 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 			'defRowOdd' => $layoutRow,
 			'defRowEven' => $layoutRow
 		);
-		$this->doc->tableLayout['defRowOdd']['tr'] = array('<tr valign="top" class="tr-odd">', '</tr>');
-		$this->doc->tableLayout['defRowEven']['tr'] = array('<tr valign="top" class="tr-even">', '</tr>');
+		$this->doc->tableLayout['defRowOdd']['tr'] = array('<tr valign="top" class="tr-odd" style="cursor: default">', '</tr>');
+		$this->doc->tableLayout['defRowEven']['tr'] = array('<tr valign="top" class="tr-even" style="cursor: default">', '</tr>');
 		$this->doc->table_TABLE = '<table border="0" cellspacing="0" cellpadding="0" class="typo3-usersettings">';
 
 			// Render content:
@@ -341,10 +319,10 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 					$whereApx = " AND tt_products.category=" . $itemsFilter;
 
 				$filterContent = '<div class="pare" style="float: right;">' .
-					'	<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$extConf['PIDstoreRoot'].']=new&defVals[tt_products][category]=' . $itemsFilter, $GLOBALS['BACK_PATH'])).'">' .
+					'	<span class="sv-link" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$extConf['PIDstoreRoot'].']=new&defVals[tt_products][category]=' . $itemsFilter, $GLOBALS['BACK_PATH'])).'">' .
 					'		<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/new_el.gif').' title="' . $LANG->getLL('act.add_new_record') . '" border="0" alt="" />' .
 					'		' . $LANG->getLL('act.add_new_record') .
-					'	</a>' .
+					'	</span>' .
 					'</div>';
 
 				$filterContent .= $LANG->getLL('function1.filter');
@@ -383,10 +361,16 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 				$res = $TYPO3_DB->sql_query($query);
 				$counter = 0;
 				while($row = $TYPO3_DB->sql_fetch_assoc($res)) {
-					if ($extConf['iconsInsteadImages'])
-						$table[$counter][0] = '<div class="hiddenImage">' . $this->pictureGenerator($row['image'], $extConf['imagesWidth'], 600) . '</div><span class="t3-icon t3-icon-tcarecords t3-icon-tcarecords-tt_products t3-icon-tt_products-default">&nbsp;</span>';
-					else
+					if (!$extConf['iconsInsteadImages'] && $row['image']) {
 						$table[$counter][0] = $this->pictureGenerator($row['image'], $extConf['imagesWidth'], 600);
+					} else {
+						$table[$counter][0] = '<div class="td-inner' . (!$row['image'] ? ' no-image' : '' ) . '">';
+						if ($row['image']) {
+							$table[$counter][0] .= '<div class="hiddenImage">' . $this->pictureGenerator($row['image'], $extConf['imagesWidth'], 600) . '</div>';
+						}
+						$table[$counter][0] .= '<span class="t3-icon t3-icon-tcarecords t3-icon-tcarecords-tt_products t3-icon-tt_products-default">&nbsp;</span>';
+						$table[$counter][0] .= '</div>';
+					}
 					$table[$counter][1] = $row['title'];
 					if ($itemsFilter == 0) {
 						$table[$counter][2] = $categories[$row['category']];
@@ -402,10 +386,10 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 
 				$tabContent .= '<div class="tab-content">
 						<div class="pare" style="float: right;">
-							<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$extConf['PIDstoreRoot'].']=new&defVals[tt_products][category]=' . $itemsFilter, $GLOBALS['BACK_PATH'])).'">
+							<span class="sv-link" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products]['.$extConf['PIDstoreRoot'].']=new&defVals[tt_products][category]=' . $itemsFilter, $GLOBALS['BACK_PATH'])).'">
 								<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/new_el.gif').' title="' . $LANG->getLL('act.add_new_record') . '" border="0" alt="" />
 								' . $LANG->getLL('act.add_new_record') . '
-							</a>
+							</span>
 						</div>
 						<div class="clearer"><!-- --></div>
 					</div>';
@@ -452,10 +436,10 @@ class tx_shopmanager_module1 extends t3lib_SCbase {
 
 				$content .= '<div class="tab-content">
 						<div class="pare">
-							<a href="#" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products_cat]['.$extConf['PIDcategories'].']=new',$GLOBALS['BACK_PATH'])).'">
+							<span class="sv-link" onclick="'.htmlspecialchars(t3lib_BEfunc::editOnClick('&edit[tt_products_cat]['.$extConf['PIDcategories'].']=new',$GLOBALS['BACK_PATH'])).'">
 								<img'.t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'],'gfx/new_el.gif').' title="' . $LANG->getLL('act.add_new_record') . '" border="0" alt="" />
 								' . $LANG->getLL('act.add_new_record') . '
-							</a>
+							</span>
 						</div>
 					</div>';
 

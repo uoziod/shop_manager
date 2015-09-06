@@ -28,7 +28,7 @@ $(document).ready(function () {
 		$(this).removeClass('highlight');
 	});
 
-	$('.td-image').hover(function () {
+	$('.td-inner:not(.no-image)').hover(function () {
 		$(this).addClass('showImage');
 	}, function () {
 		$(this).removeClass('showImage');

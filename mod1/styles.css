@@ -30,6 +30,7 @@ TABLE.typo3-usersettings TD.td-icons {
 TABLE.typo3-usersettings TD.td-image {
 	width: 50px;
 	padding: 4px 8px;
+	text-align: right;
 }
 
 TABLE.typo3-usersettings TD.td-image .hiddenImage {
@@ -101,6 +102,10 @@ TABLE.typo3-usersettings TD.td-edge {
 	color: #fff;
 }
 
+.typo3-usersettings TR.active:hover {
+	color: #000;
+}
+
 .tx_shopmanager_spaced_block {
 	float: left;
 	margin-left: 5px;
@@ -113,4 +118,12 @@ TABLE.typo3-usersettings TD.td-edge {
 .verticalCenter TH,
 .verticalCenter TD {
 	vertical-align: middle;
+}
+
+.sv-link {
+	cursor: pointer;
+}
+
+.buttongroup INPUT {
+	padding: 0;
 }
